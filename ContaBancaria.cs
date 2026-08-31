@@ -8,4 +8,15 @@ public class ContaBancaria
         Titular = titular;
         Saldo = saldoInicial;
     }
+
+    public void Depositar(double valor)
+    {
+        if (valor <= 0)
+        {
+            Console.WriteLine("valor de deposito tem que ser maior que zero");
+            return;
+        }
+
+        Saldo += valor;
+    }
 }
