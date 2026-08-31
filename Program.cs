@@ -1,5 +1,9 @@
 Console.Write("nome do titular: ");
-var nome = Console.ReadLine() ?? "sem nome";
+var nome = Console.ReadLine();
+if (string.IsNullOrWhiteSpace(nome))
+{
+    nome = "sem nome";
+}
 
 var conta = new ContaBancaria(nome, 0);
 
