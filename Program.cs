@@ -1,12 +1,44 @@
-var conta = new ContaBancaria("Davi", 100);
-Console.WriteLine($"{conta.Titular} - saldo: {conta.Saldo}");
+Console.Write("nome do titular: ");
+var nome = Console.ReadLine() ?? "sem nome";
 
-conta.Depositar(50);
-Console.WriteLine($"depois do deposito: {conta.Saldo}");
+var conta = new ContaBancaria(nome, 0);
 
-conta.Sacar(30);
-Console.WriteLine($"depois do saque: {conta.Saldo}");
+var continuar = true;
+while (continuar)
+{
+    Console.WriteLine();
+    Console.WriteLine("1 - depositar");
+    Console.WriteLine("2 - sacar");
+    Console.WriteLine("3 - extrato");
+    Console.WriteLine("0 - sair");
+    Console.Write("opcao: ");
 
-conta.Sacar(1000);
+    var opcao = Console.ReadLine();
 
-conta.Extrato();
+    switch (opcao)
+    {
+        case "1":
+            Console.Write("valor do deposito: ");
+            var valorDeposito = double.Parse(Console.ReadLine() ?? "0");
+            conta.Depositar(valorDeposito);
+            break;
+
+        case "2":
+            Console.Write("valor do saque: ");
+            var valorSaque = double.Parse(Console.ReadLine() ?? "0");
+            conta.Sacar(valorSaque);
+            break;
+
+        case "3":
+            conta.Extrato();
+            break;
+
+        case "0":
+            continuar = false;
+            break;
+
+        default:
+            Console.WriteLine("opcao invalida");
+            break;
+    }
+}
