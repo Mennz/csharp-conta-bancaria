@@ -2,11 +2,13 @@ public class ContaBancaria
 {
     public string Titular { get; set; }
     public double Saldo { get; private set; }
+    private List<string> historico = new List<string>();
 
     public ContaBancaria(string titular, double saldoInicial)
     {
         Titular = titular;
         Saldo = saldoInicial;
+        historico.Add($"abertura de conta - saldo inicial: {saldoInicial}");
     }
 
     public void Depositar(double valor)
@@ -18,6 +20,7 @@ public class ContaBancaria
         }
 
         Saldo += valor;
+        historico.Add($"deposito de {valor}");
     }
 
     public void Sacar(double valor)
@@ -36,5 +39,16 @@ public class ContaBancaria
         }
 
         Saldo -= valor;
+        historico.Add($"saque de {valor}");
+    }
+
+    public void Extrato()
+    {
+        Console.WriteLine($"--- extrato de {Titular} ---");
+        foreach (var linha in historico)
+        {
+            Console.WriteLine(linha);
+        }
+        Console.WriteLine($"saldo atual: {Saldo}");
     }
 }
