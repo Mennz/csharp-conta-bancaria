@@ -19,4 +19,22 @@ public class ContaBancaria
 
         Saldo += valor;
     }
+
+    public void Sacar(double valor)
+    {
+        if (valor <= 0)
+        {
+            Console.WriteLine("valor de saque tem que ser maior que zero");
+            return;
+        }
+
+        // nao pode deixar o saldo negativo
+        if (valor > Saldo)
+        {
+            Console.WriteLine("saldo insuficiente");
+            return;
+        }
+
+        Saldo -= valor;
+    }
 }
