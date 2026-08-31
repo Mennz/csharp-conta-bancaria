@@ -1,1 +1,2 @@
-Console.WriteLine("conta bancaria - inicio do projeto");
+var conta = new ContaBancaria("Davi", 100);
+Console.WriteLine($"{conta.Titular} - saldo: {conta.Saldo}");
