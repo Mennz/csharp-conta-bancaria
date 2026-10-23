@@ -41,7 +41,14 @@ while (continuar)
         case "2":
             Console.Write("valor do saque: ");
             var valorSaque = double.Parse(Console.ReadLine() ?? "0");
-            conta.Sacar(valorSaque);
+            try
+            {
+                conta.Sacar(valorSaque);
+            }
+            catch (SaldoInsuficienteException erro)
+            {
+                Console.WriteLine(erro.Message);
+            }
             break;
 
         case "3":
@@ -51,7 +58,14 @@ while (continuar)
         case "4":
             Console.Write("valor da transferencia: ");
             var valorTransferencia = double.Parse(Console.ReadLine() ?? "0");
-            conta.Transferir(contaOutra, valorTransferencia);
+            try
+            {
+                conta.Transferir(contaOutra, valorTransferencia);
+            }
+            catch (SaldoInsuficienteException erro)
+            {
+                Console.WriteLine(erro.Message);
+            }
             break;
 
         case "5":
