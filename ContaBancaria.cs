@@ -40,8 +40,7 @@ public class ContaBancaria
         // nao pode deixar o saldo negativo
         if (valor > Saldo)
         {
-            Console.WriteLine("saldo insuficiente");
-            return;
+            throw new SaldoInsuficienteException("saldo insuficiente para sacar");
         }
 
         Saldo -= valor;
@@ -58,8 +57,7 @@ public class ContaBancaria
 
         if (valor > Saldo)
         {
-            Console.WriteLine("saldo insuficiente");
-            return;
+            throw new SaldoInsuficienteException("saldo insuficiente para transferir");
         }
 
         Saldo -= valor;
