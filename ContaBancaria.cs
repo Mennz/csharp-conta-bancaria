@@ -8,7 +8,13 @@ public class ContaBancaria
     {
         Titular = titular;
         Saldo = saldoInicial;
-        historico.Add($"abertura de conta - saldo inicial: {saldoInicial}");
+        RegistrarHistorico($"abertura de conta - saldo inicial: {saldoInicial}");
+    }
+
+    // guarda data e hora junto pra saber quando cada operacao aconteceu
+    private void RegistrarHistorico(string texto)
+    {
+        historico.Add($"[{DateTime.Now:dd/MM/yyyy HH:mm:ss}] {texto}");
     }
 
     public void Depositar(double valor)
@@ -20,7 +26,7 @@ public class ContaBancaria
         }
 
         Saldo += valor;
-        historico.Add($"deposito de {valor}");
+        RegistrarHistorico($"deposito de {valor}");
     }
 
     public void Sacar(double valor)
@@ -39,7 +45,7 @@ public class ContaBancaria
         }
 
         Saldo -= valor;
-        historico.Add($"saque de {valor}");
+        RegistrarHistorico($"saque de {valor}");
     }
 
     public void Transferir(ContaBancaria destino, double valor)
@@ -58,8 +64,8 @@ public class ContaBancaria
 
         Saldo -= valor;
         destino.Saldo += valor;
-        historico.Add($"transferencia de {valor} para {destino.Titular}");
-        destino.historico.Add($"transferencia de {valor} recebida de {Titular}");
+        RegistrarHistorico($"transferencia de {valor} para {destino.Titular}");
+        destino.RegistrarHistorico($"transferencia de {valor} recebida de {Titular}");
     }
 
     public void Extrato()
