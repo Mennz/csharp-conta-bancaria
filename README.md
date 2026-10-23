@@ -11,6 +11,11 @@ operacoes e um menu de console pra usar tudo isso interativamente.
   insuficiente).
 - Guardar um historico numa `List<string>` e montar um extrato a partir dele.
 - Loop de menu no `Program.cs` com `switch` sobre a opcao digitada.
+- Transferencia entre duas contas, acessando o saldo e o historico privados da
+  outra instancia por dentro da propria classe.
+- Data e hora em cada linha do historico.
+- Excecao propria `SaldoInsuficienteException` em vez de so imprimir mensagem,
+  tratada com `try/catch` no menu.
 
 ## Como rodar
 
