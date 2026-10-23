@@ -7,6 +7,15 @@ if (string.IsNullOrWhiteSpace(nome))
 
 var conta = new ContaBancaria(nome, 0);
 
+Console.Write("nome do titular da outra conta: ");
+var nomeOutra = Console.ReadLine();
+if (string.IsNullOrWhiteSpace(nomeOutra))
+{
+    nomeOutra = "sem nome";
+}
+
+var contaOutra = new ContaBancaria(nomeOutra, 0);
+
 var continuar = true;
 while (continuar)
 {
@@ -14,6 +23,8 @@ while (continuar)
     Console.WriteLine("1 - depositar");
     Console.WriteLine("2 - sacar");
     Console.WriteLine("3 - extrato");
+    Console.WriteLine("4 - transferir para a outra conta");
+    Console.WriteLine("5 - extrato da outra conta");
     Console.WriteLine("0 - sair");
     Console.Write("opcao: ");
 
@@ -35,6 +46,16 @@ while (continuar)
 
         case "3":
             conta.Extrato();
+            break;
+
+        case "4":
+            Console.Write("valor da transferencia: ");
+            var valorTransferencia = double.Parse(Console.ReadLine() ?? "0");
+            conta.Transferir(contaOutra, valorTransferencia);
+            break;
+
+        case "5":
+            contaOutra.Extrato();
             break;
 
         case "0":

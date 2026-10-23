@@ -42,6 +42,26 @@ public class ContaBancaria
         historico.Add($"saque de {valor}");
     }
 
+    public void Transferir(ContaBancaria destino, double valor)
+    {
+        if (valor <= 0)
+        {
+            Console.WriteLine("valor de transferencia tem que ser maior que zero");
+            return;
+        }
+
+        if (valor > Saldo)
+        {
+            Console.WriteLine("saldo insuficiente");
+            return;
+        }
+
+        Saldo -= valor;
+        destino.Saldo += valor;
+        historico.Add($"transferencia de {valor} para {destino.Titular}");
+        destino.historico.Add($"transferencia de {valor} recebida de {Titular}");
+    }
+
     public void Extrato()
     {
         Console.WriteLine($"--- extrato de {Titular} ---");
